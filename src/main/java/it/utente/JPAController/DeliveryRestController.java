@@ -21,19 +21,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/shops")
 public class DeliveryRestController {
 	
  @Autowired
  private ShopCrud shopcrud;
  
  
- @GetMapping(value="/allShop",produces="application/json")
+ @GetMapping(value="/",produces="application/json")
  public List<Shop> getAllProducts() {
      return shopcrud.getAllShops();
  }
 
- @GetMapping("/findShop/{id}")
+ @GetMapping("/{id}")
  public Shop getShopById(@PathVariable int id) {
      return shopcrud.getShopById(id);
  }

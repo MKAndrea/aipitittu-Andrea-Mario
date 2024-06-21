@@ -14,11 +14,16 @@ import jakarta.transaction.Transactional;
 public interface ShopRepository extends JpaRepository<Shop,Integer> {
 	 @Modifying
 	    @Transactional
-	    @Query(value = "INSERT INTO shop (idshops, denominazione, indirizzo) " +
-	                   "VALUES (:idshops, :denominazione, :indirizzo) " +
-	                   "ON DUPLICATE KEY UPDATE denominazione = :denominazione, indirizzo = :indirizzo", nativeQuery = true)
-	    void upsertShop(@Param("idshops") int idshops, 
-	                       @Param("denominazione") String denominazione, 
-	                       @Param("indirizzo") String indirizzo
+	    @Query(value = "INSERT INTO shop (id, name, address,image_preview,city,phonenumber,:tax_code) " +
+	                   "VALUES (:id, :name,: address, :image_preview,:city,:phonenumber,:tax_code) " +
+	                   "ON DUPLICATE KEY UPDATE name = :name, address = :address,image_preview = :image_preview,city = :city"
+	                   + "phonenumber = :phonenumber,tax_code = :tax_code", nativeQuery = true)
+	    void upsertShop(@Param("id") int id, 
+	                       @Param("name") String name, 
+	                       @Param("address") String address,
+	                       @Param("image_preview") String image_preview,
+	                       @Param("city") String city,
+	                       @Param("phonenumber") String phonenumber,
+	                       @Param("tax_code") String tax_code
 	                       );
 }

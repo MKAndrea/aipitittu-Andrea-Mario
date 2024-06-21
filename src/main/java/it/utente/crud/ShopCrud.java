@@ -29,12 +29,12 @@ public class ShopCrud {
       if (existingShop.isPresent()) {
           // Aggiorna il prodotto esistente
     	  Shop updateShop = existingShop.get();
+    	  updateShop.setName(shop.getName());
     	  updateShop.setAddress(shop.getAddress());
     	  updateShop.setImage_preview(shop.getImage_preview());
     	  updateShop.setCity(shop.getCity());
     	  updateShop.setPhonenumber(shop.getPhonenumber());
     	  updateShop.setTax_code(shop.getTax_code());
-    	  updateShop.setDeleted(shop.getDeleted());
           return repository.save(updateShop);
       } else {
           // Inserisce un nuovo prodotto

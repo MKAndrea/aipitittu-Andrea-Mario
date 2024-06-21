@@ -30,11 +30,11 @@ public class WebSecurityConfig  {
         SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
           http
                 .authorizeHttpRequests(authorize -> authorize
-                      .requestMatchers("/register", "/login").permitAll()
+                      .requestMatchers("/register", "/login","/api/shops/**").permitAll()
                       .anyRequest().authenticated())
                 .formLogin(form -> form
                       .loginPage("/login")
-                      .defaultSuccessUrl("/api/allShop", true)
+                      .defaultSuccessUrl("/api/shops/", true)
                       .permitAll())
                 .logout(logout -> logout
                       .permitAll())
